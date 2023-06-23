@@ -55,10 +55,10 @@ for (const flavor of Object.keys(ctp.variants)) {
 const readme = fs.readFileSync("README.md").toString();
 fs.writeFileSync(
   "README.md",
-  // regex; replace first line starting with: "THEMES = auto,gitea,arc-green"
+  // regex; replace first line starting with: "THEMES = auto,gitea,arc-green,"
   // the "$1" is added to the front of the string so we still get the starting match added
   readme.replace(
-    /(THEMES = auto,gitea,arc-green).*/,
-    "$1," + themeList.join(",")
+    /(THEMES = auto,gitea,arc-green,).*/,
+    "$1" + themeList.join(",")
   )
 );
