@@ -29,8 +29,7 @@ const accents = [
 
 fs.mkdirSync(path.join(__dirname, "dist"), { recursive: true });
 
-// the "$1" is added to the front of the string so we still get the starting match added
-let themeList = ["$1"];
+let themeList = [];
 
 for (const flavor of Object.keys(ctp.variants)) {
   for (const accent of accents) {
@@ -56,6 +55,10 @@ for (const flavor of Object.keys(ctp.variants)) {
 const readme = fs.readFileSync("README.md").toString();
 fs.writeFileSync(
   "README.md",
-  // regex; replace every line starting with: "THEMES = auto,gitea,arc-green"
-  readme.replace(/(THEMES = auto,gitea,arc-green).*/, themeList.join(","))
+  // regex; replace first line starting with: "THEMES = auto,gitea,arc-green"
+  // the "$1" is added to the front of the string so we still get the starting match added
+  readme.replace(
+    /(THEMES = auto,gitea,arc-green).*/,
+    "$1" + themeList.join(",")
+  )
 );
