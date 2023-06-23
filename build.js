@@ -27,6 +27,8 @@ const accents = [
   "lavender",
 ];
 
+fs.mkdirSync(path.join(__dirname, "dist"), { recursive: true });
+
 for (const flavor of Object.keys(ctp.variants)) {
   for (const accent of accents) {
     const input = builder(flavor, accent);
@@ -37,7 +39,6 @@ for (const flavor of Object.keys(ctp.variants)) {
       ],
     });
 
-    fs.mkdirSync(path.join(__dirname, "dist"), { recursive: true });
     fs.writeFileSync(
       path.join(__dirname, "dist", `theme-catppuccin-${flavor}-${accent}.css`),
       result.css
