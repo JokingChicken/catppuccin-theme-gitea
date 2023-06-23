@@ -59,6 +59,6 @@ fs.writeFileSync(
   // the "$1" is added to the front of the string so we still get the starting match added
   readme.replace(
     /(THEMES = auto,gitea,arc-green).*/,
-    "$1" + themeList.join(",")
+    "$1," + themeList.join(",")
   )
 );
